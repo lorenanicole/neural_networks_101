@@ -43,6 +43,11 @@ def mean_squared_error(y, pred):
 # Step 1A: Load the data
 breast_cancer_data = datasets.load_breast_cancer()
 
+print('Class Labels: {}'.format(breast_cancer_data.target_names))
+print('Dataset Shape: {}'.format(breast_cancer_data.data.shape))  # (569, 30) - (num_instances, num_features)
+# print('Dataset features: {}'.format(breast_cancer_data.feature_names))
+print('{} vals in sample: {}'.format(breast_cancer_data.target_names[0], np.count_nonzero(breast_cancer_data['target'] == 0)))
+print('{} vals in sample: {}'.format(breast_cancer_data.target_names[1], np.count_nonzero(breast_cancer_data['target'] == 1)))
 x = breast_cancer_data['data']  # array of features with shape: (n_samples, n_features)
 y = breast_cancer_data['target']  # array of binary values for the two classes: (n_samples)
 
