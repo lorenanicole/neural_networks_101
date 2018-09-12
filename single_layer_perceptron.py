@@ -75,18 +75,11 @@ W = 2*np.random.random((np.array(x).shape[1], 1)) - 1  # shape: (n_features * 1)
 
 # Step 2B: Update the neuron's weights
 
-# With the bounded predictions l1, need to calculate
-# the error/loss in these predictions and update neuron weights
-# proposal to this error
-# We'll use the gradient descent optimization algorith for weight update
-# To use it, need an error function to represent the gap b/w neuron's predictions and ground truth
-# Error function is defined to be a scaled version of mean squared error
-# A gradient is the derivative vector of a function that'd dependent on 1+ variables
-# Vectors have a magnitude and a direction, the neuron's error depends on all weights feeding into it
-# Gradient is the set of partial derivaties of error w/respect to each weight
-# Moving the opposite direction of the gradient (the rate of most increase) minimizes the error
-# therefore need to calculate the gradient of the error function for our neuron relative to each weight
-# then update the weights proportionally 
+# With the bounded predictions `l1`, we need to calculate the error/loss in these predictions and update neuron weights. We'll use the gradient descent optimization algorithm for weight updates.
+# First we need to calculate the error function to use gradient descent. The error function will help update the weights by calculating the distance between the neuron's predictions and ground truth (label). This is captured in `l1_error`. 
+# We must then obtain the gradient (`l1_gradient`), or the partial derivatives in respect to each weight, to minimize the error. These gradient vectors have a magnitude and a direction.
+# Multiplying the `l1_error` with the `l1_gradient` leaves a `l1_delta`.
+# Lastly, we need to apply the `l1_delta` to the original inputs (`10`) to get the `l1_weighted_delta` to apply to the original weights `W1`. Ultimately our `lr` (learning rate) decides how large a "step" to take in updating the weights `W`.
 
 lr = 0.5  # learning rate
 history = {"loss": [], "val_loss": [], "acc": [],
